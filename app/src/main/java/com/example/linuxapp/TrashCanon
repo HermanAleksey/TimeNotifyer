@@ -1,0 +1,50 @@
+//    private fun sendNotification() {
+//        val expandedView = RemoteViews(packageName, R.layout.notofication_expaded)
+//
+////        expandedView.setTextViewText(R.id.notification_message, mEditText.getText())
+//
+//        val option1IntentMessage = Intent(BroadcastConstants.FirstButton.value)
+//        val option1PendingIntent = PendingIntent.getBroadcast(this, 0, option1IntentMessage, 0)
+//        expandedView.setOnClickPendingIntent(
+//            R.id.btn_notification_expanded_option_1,
+//            option1PendingIntent
+//        )
+//        val option2IntentMessage = Intent(BroadcastConstants.SecondButton.value)
+//        val option2PendingIntent = PendingIntent.getBroadcast(this, 0, option2IntentMessage, 0)
+//        expandedView.setOnClickPendingIntent(
+//            R.id.btn_notification_expanded_option_2,
+//            option2PendingIntent
+//        )
+//        val option3IntentMessage = Intent(BroadcastConstants.ThirdButton.value)
+//        val option3PendingIntent = PendingIntent.getBroadcast(this, 0, option3IntentMessage, 0)
+//        expandedView.setOnClickPendingIntent(
+//            R.id.btn_notification_expanded_option_3,
+//            option3PendingIntent
+//        )
+//
+//        val collapsedView = RemoteViews(packageName, R.layout.notification_collapsed)
+//
+//        val customNotifBuilder: NotificationCompat.Builder =
+//            NotificationCompat.Builder(this, CHANNEL_ID)
+//                .setSmallIcon(R.drawable.notification_icon)
+//                .setContentTitle("My notification")
+//                .setContentText("Hello World!")
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//                .setCategory(NotificationCompat.CATEGORY_REMINDER)
+//                .setContentIntent(// tapping notification will open MainActivity
+//                    PendingIntent.getActivity(
+//                        this,
+//                        0,
+//                        Intent(this, MainActivity::class.java),
+//                        0
+//                    )
+//                ) // setting the custom collapsed and expanded views
+//                .setCustomContentView(collapsedView)
+//                .setCustomBigContentView(expandedView) // setting style to DecoratedCustomViewStyle() is necessary for custom views to display
+//
+//        with(NotificationManagerCompat.from(this)) {
+//            // notificationId is a unique int for each notification that you must define
+//            notify(100, customNotifBuilder.build())
+//        }
+//    }
+//from Main activity
