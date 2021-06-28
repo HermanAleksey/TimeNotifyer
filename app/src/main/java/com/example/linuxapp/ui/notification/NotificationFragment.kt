@@ -34,6 +34,11 @@ class NotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        val multiSlider = _binding!!.multiSlider
+//        multiSlider.step = 2
+//        multiSlider.min = 1
+//        multiSlider.max = 24
+
     }
 
     override fun onDestroyView() {

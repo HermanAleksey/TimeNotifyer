@@ -50,6 +50,8 @@
             android:name="com.example.linuxapp.controller.widget.WidgetService"
             android:label="WidgetService" />
 
+
+
         <receiver
             android:name="com.example.linuxapp.controller.notif.NotificationBroadcastReceiver"
             android:enabled="true"
