@@ -20,7 +20,7 @@ class NotificationBroadcastReceiver : BroadcastReceiver() {
 
         val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
         val wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "")
-        wl.acquire(1*60*1000L /*10 minutes*/)
+        wl.acquire(1*60*1000L /*1 minute*/)
 
         NotificationHelper().sendNotification(context)
         setAlarm(context)

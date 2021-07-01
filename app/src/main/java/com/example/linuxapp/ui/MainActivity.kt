@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private val CHANNEL_ID = "CHANNEL_ID"
     private val NOTIFICATION_ID = 1
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

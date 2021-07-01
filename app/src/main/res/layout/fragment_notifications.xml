@@ -38,21 +38,23 @@
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Body1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
                         android:text="Получать уведомления?"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_receive_notifications"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switch1"
+                        android:id="@+id/switch_receive_notifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:checked="true"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,15 +77,16 @@
                     <TextView
                         android:id="@+id/textView4"
                         style="@style/TextAppearance.MaterialComponents.Body1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Ограничить получение уведомлений\n в ночное время?"
+                        android:text="Получать уведомления в ночное время?"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_notifications_at_night_time"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switch2"
+                        android:id="@+id/switch_notifications_at_night_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,14 +114,13 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:text="Начало ночного времени: "
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.245" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_setting_start_night_time"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,9 +130,10 @@
                         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
                     <ImageButton
+                        android:id="@+id/ib_setting_start_night_time"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="4dp"
                         android:background="@drawable/ic_baseline_settings_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -162,15 +165,17 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_setting_end_night_time"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="8:00"
+                        android:text="24:00"
                         app:layout_constraintBottom_toBottomOf="@+id/textView7"
                         app:layout_constraintStart_toEndOf="@+id/textView7"
                         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
                     <ImageButton
+                        android:id="@+id/ib_setting_end_night_time"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_marginEnd="4dp"
@@ -205,7 +210,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/tv_notification_period"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -219,12 +224,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" минут"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                        app:layout_constraintStart_toEndOf="@+id/textView9"
-                        app:layout_constraintTop_toTopOf="@+id/textView9"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_notification_period"
+                        app:layout_constraintStart_toEndOf="@+id/tv_notification_period"
+                        app:layout_constraintTop_toTopOf="@+id/tv_notification_period"
                         app:layout_constraintVertical_bias="1.0" />
 
                     <ImageButton
+                        android:id="@+id/ib_setting_period"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_marginEnd="4dp"
@@ -240,7 +246,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="5dp">
+                android:layout_marginVertical="5dp"
+                android:backgroundTint="#999">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -254,54 +261,69 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="Start"
-                        app:layout_constraintBottom_toTopOf="@+id/textView5"
-                        app:layout_constraintEnd_toEndOf="@+id/textView5"
-                        app:layout_constraintStart_toStartOf="@+id/textView5" />
+                        app:layout_constraintBottom_toTopOf="@+id/tv_info_start_night_time"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_info_start_night_time"
+                        app:layout_constraintStart_toStartOf="@+id/tv_info_start_night_time" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tv_info_start_night_time"
                         style="@style/TextAppearance.MaterialComponents.Headline5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="8:00"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_time" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/tv_info_end_night_time"
                         style="@style/TextAppearance.MaterialComponents.Headline5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="24:00"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_info_start_night_time"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="@+id/tv_info_start_night_time"
                         app:layout_constraintVertical_bias="1.0" />
 
                     <TextView
+                        android:id="@+id/textView5"
                         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="Finish"
-                        app:layout_constraintBottom_toTopOf="@+id/textView11"
-                        app:layout_constraintEnd_toEndOf="@+id/textView11"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_info_end_night_time"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_info_end_night_time"
                         app:layout_constraintHorizontal_bias="0.625"
-                        app:layout_constraintStart_toStartOf="@+id/textView11" />
+                        app:layout_constraintStart_toStartOf="@+id/tv_info_end_night_time" />
 
-                    <TextView
-                        android:id="@+id/textView12"
-                        style="@style/TextAppearance.MaterialComponents.Headline5"
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="30 min"
-                        app:layout_constraintEnd_toStartOf="@+id/textView11"
-                        app:layout_constraintHorizontal_bias="0.543"
-                        app:layout_constraintStart_toEndOf="@+id/textView5"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toStartOf="@+id/tv_info_end_night_time"
+                        app:layout_constraintStart_toEndOf="@+id/tv_info_start_night_time"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_info_notification_period"
+                            style="@style/TextAppearance.MaterialComponents.Headline5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30"                             />
+
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Headline5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" min" />
+
+                    </LinearLayout>
+
 
                     <TextView
                         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
@@ -309,9 +331,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Period"
-                        app:layout_constraintEnd_toEndOf="@+id/textView12"
-                        app:layout_constraintStart_toStartOf="@+id/textView12"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                        app:layout_constraintEnd_toEndOf="@+id/linear_layout_time"
+                        app:layout_constraintStart_toStartOf="@+id/linear_layout_time"
+                        app:layout_constraintTop_toBottomOf="@+id/linear_layout_time" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -344,7 +366,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditText"
+                        android:id="@+id/ti_notification_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Введите текст уведомления"
@@ -354,13 +376,14 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                     <Button
+                        android:id="@+id/btn_apply_notification_text"
                         style="@style/Widget.MaterialComponents.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Apply"
-                        app:layout_constraintEnd_toEndOf="@+id/textInputEditText"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+                        app:layout_constraintEnd_toEndOf="@+id/ti_notification_text"
+                        app:layout_constraintTop_toBottomOf="@+id/ti_notification_text" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
