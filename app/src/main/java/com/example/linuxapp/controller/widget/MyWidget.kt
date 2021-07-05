@@ -11,7 +11,7 @@ import android.widget.RemoteViews
 import com.example.linuxapp.Constant
 import com.example.linuxapp.Constant.BroadcastConstants
 import com.example.linuxapp.R
-import com.example.linuxapp.ui.MainActivity
+import com.example.linuxapp.view.MainActivity
 import java.util.*
 
 

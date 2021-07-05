@@ -7,7 +7,7 @@
 
     <!-- MainFragment -->
     <fragment android:id="@+id/navigation_home"
-        android:name="com.example.linuxapp.ui.home.HomeFragment"
+        android:name="com.example.linuxapp.view.home.HomeFragment"
         android:label="Main"
         tools:layout="@layout/fragment_home">
 
@@ -17,19 +17,19 @@
 
     <!-- DiagramFragment -->
     <fragment android:id="@+id/navigation_statistics"
-        android:name="com.example.linuxapp.ui.diagramm.StatisticsFragment"
+        android:name="com.example.linuxapp.view.diagramm.StatisticsFragment"
         android:label="Diagram"
         tools:layout="@layout/fragment_statistics"/>
 
 
     <fragment
         android:id="@+id/navigation_notification"
-        android:name="com.example.linuxapp.ui.notification.NotificationFragment"
+        android:name="com.example.linuxapp.view.notification.NotificationFragment"
         android:label="Notification"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_widget"
-        android:name="com.example.linuxapp.ui.widget.WidgetFragment"
+        android:name="com.example.linuxapp.view.widget.WidgetFragment"
         android:label="fragment_widget"
         tools:layout="@layout/fragment_widget" />
 

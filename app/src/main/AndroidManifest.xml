@@ -13,7 +13,7 @@
         android:theme="@style/Theme.LinuxApp">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".view.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

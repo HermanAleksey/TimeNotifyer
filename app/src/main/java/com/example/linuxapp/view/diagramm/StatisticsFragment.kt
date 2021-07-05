@@ -1,4 +1,4 @@
-package com.example.linuxapp.ui.diagramm
+package com.example.linuxapp.view.diagramm
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,9 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.linuxapp.R
-import com.example.linuxapp.databinding.FragmentHomeBinding
 import com.example.linuxapp.databinding.FragmentStatisticsBinding
-import com.example.linuxapp.ui.home.HomeViewModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet

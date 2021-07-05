@@ -1,4 +1,4 @@
-package com.example.linuxapp.ui
+package com.example.linuxapp.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

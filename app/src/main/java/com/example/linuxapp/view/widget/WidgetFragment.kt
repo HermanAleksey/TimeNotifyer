@@ -1,4 +1,4 @@
-package com.example.linuxapp.ui.widget
+package com.example.linuxapp.view.widget
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -10,7 +10,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.linuxapp.R
-import com.example.linuxapp.ui.MainActivity
+import com.example.linuxapp.view.MainActivity
 
 class NotificationHelper {
     private val NOTIFICATION_ID = 3
