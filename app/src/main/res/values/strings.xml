@@ -1,16 +1,31 @@
 <resources>
-    <string name="app_name">LinuxApp</string>
+    <string name="app_name">Time Notifier</string>
     <string name="channel_name">channel name</string>
     <string name="channel_description">chan descr</string>
-    <string name="variant1">variant_1</string>
-    <string name="variant2">variant_2</string>
-    <string name="variant3">variant_3</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main2">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+<!--    fragments labels-->
+    <string name="widget_settings">Widget settings</string>
+    <string name="notification_settings">Notification settings</string>
+    <string name="diagrams">Diagrams</string>
+    <string name="main">Main</string>
+
+
+<!--    notification fragment-->
+    <string name="basics">Basics</string>
+    <string name="receive_notifications_question">Receive notifications?</string>
+    <string name="receive_notifications_at_night_time_question">Receive notifications at night time?</string>
+    <string name="night_time_start">Start of night time: </string>
+    <string name="night_time_end">End of night time: </string>
+    <string name="periodicity">Periodicity</string>
+    <string name="hours">hour(s)</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="additional">Additional</string>
+    <string name="notification_text">Notification text</string>
+    <string name="apply">Apply</string>
+
+
+
 </resources>

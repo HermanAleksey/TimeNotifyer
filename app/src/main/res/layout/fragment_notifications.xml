@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -21,7 +21,7 @@
                 style="@style/settingsCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Basics" />
+                android:text="@string/basics" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
-                        android:text="Получать уведомления?"
+                        android:text="@string/receive_notifications_question"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/switch_receive_notifications"
                         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Получать уведомления в ночное время?"
+                        android:text="@string/receive_notifications_at_night_time_question"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/switch_notifications_at_night_time"
                         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Начало ночного времени: "
+                        android:text="@string/night_time_start"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -159,7 +159,7 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Окончание ночного времени: "
+                        android:text="@string/night_time_end"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -204,40 +204,46 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Переодичность: "
+                        android:text="@string/periodicity"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_notification_period"
+
+                        android:id="@+id/textView11"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="30"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        android:text=": "
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toTopOf="@+id/textView8" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView9"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" минут"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_notification_period"
-                        app:layout_constraintStart_toEndOf="@+id/tv_notification_period"
-                        app:layout_constraintTop_toTopOf="@+id/tv_notification_period"
-                        app:layout_constraintVertical_bias="1.0" />
+                        android:text="@string/hours"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        app:layout_constraintStart_toEndOf="@+id/number_picker_period"
+                        app:layout_constraintTop_toTopOf="@+id/textView8" />
 
-                    <ImageButton
-                        android:id="@+id/ib_setting_period"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/ic_baseline_settings_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <it.sephiroth.android.library.numberpicker.NumberPicker
+                        android:id="@+id/number_picker_period"
+                        style="@style/NumberPicker.Filled"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:progress="1"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                        app:layout_constraintStart_toEndOf="@+id/textView11"
+                        app:layout_constraintTop_toTopOf="@+id/textView8"
+                        app:picker_max="24"
+                        app:picker_min="1"
+                        app:picker_orientation="vertical"
+                        app:picker_stepSize="1"
+                        app:picker_tracker="linear" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -248,11 +254,13 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:backgroundTint="#999">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingHorizontal="10dp"
-                    android:paddingVertical="10dp">
+                    android:paddingVertical="10dp"
+                    android:background="@drawable/night_background">
 
                     <TextView
                         android:id="@+id/textView13"
@@ -260,7 +268,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Start"
+                        android:text="@string/start"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toTopOf="@+id/tv_info_start_night_time"
                         app:layout_constraintEnd_toEndOf="@+id/tv_info_start_night_time"
                         app:layout_constraintStart_toStartOf="@+id/tv_info_start_night_time" />
@@ -272,6 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="8:00"
+                        android:textColor="@color/white"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linear_layout_time" />
 
@@ -282,6 +292,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="24:00"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_info_start_night_time"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_info_start_night_time"
@@ -293,7 +304,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="Finish"
+                        android:text="@string/end"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toTopOf="@+id/tv_info_end_night_time"
                         app:layout_constraintEnd_toEndOf="@+id/tv_info_end_night_time"
                         app:layout_constraintHorizontal_bias="0.625"
@@ -314,13 +326,15 @@
                             style="@style/TextAppearance.MaterialComponents.Headline5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="30"                             />
+                            android:text="1"
+                            android:textColor="@color/white"/>
 
                         <TextView
                             style="@style/TextAppearance.MaterialComponents.Headline5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" min" />
+                            android:text="@string/hours"
+                            android:textColor="@color/white"/>
 
                     </LinearLayout>
 
@@ -330,7 +344,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Period"
+                        android:text="@string/periodicity"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="@+id/linear_layout_time"
                         app:layout_constraintStart_toStartOf="@+id/linear_layout_time"
                         app:layout_constraintTop_toBottomOf="@+id/linear_layout_time" />
@@ -342,7 +357,7 @@
                 style="@style/settingsCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Additional" />
+                android:text="@string/additional" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -361,7 +376,7 @@
                         style="@style/TextAppearance.MaterialComponents.Body2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Текст уведомления"
+                        android:text="@string/notification_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -381,7 +396,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Apply"
+                        android:text="@string/apply"
                         app:layout_constraintEnd_toEndOf="@+id/ti_notification_text"
                         app:layout_constraintTop_toBottomOf="@+id/ti_notification_text" />
 

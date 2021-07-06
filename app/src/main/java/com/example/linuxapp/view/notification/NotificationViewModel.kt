@@ -25,7 +25,7 @@ class NotificationViewModel(sharedPreferences: SharedPreferences) : ViewModel() 
     }
 
     private val nightTimeStart: MutableLiveData<Int> = MutableLiveData(
-        sharedPreferences.getInt(NotificationConstants.NIGHT_TIME_START.value, 23*60*60*1000)
+        sharedPreferences.getInt(NotificationConstants.NIGHT_TIME_START.value, 23*60)
     )
 
     fun getNightTimeStart(): LiveData<Int> {
@@ -33,7 +33,7 @@ class NotificationViewModel(sharedPreferences: SharedPreferences) : ViewModel() 
     }
 
     private val nightTimeEnd: MutableLiveData<Int> = MutableLiveData(
-        sharedPreferences.getInt(NotificationConstants.NIGHT_TIME_END.value, 8*60*60*1000)
+        sharedPreferences.getInt(NotificationConstants.NIGHT_TIME_END.value, 8*60)
     )
 
     fun getNightTimeEnd(): LiveData<Int> {
@@ -41,15 +41,19 @@ class NotificationViewModel(sharedPreferences: SharedPreferences) : ViewModel() 
     }
 
     private val notificationPeriod: MutableLiveData<Int> = MutableLiveData(
-        sharedPreferences.getInt(NotificationConstants.NOTIFICATION_PERIOD.value, 0)
+        sharedPreferences.getInt(NotificationConstants.NOTIFICATION_PERIOD.value, 1)
     )
 
     fun getNotificationPeriod(): LiveData<Int> {
         return notificationPeriod
     }
 
+    fun setPeriod(period: Int){
+        notificationPeriod.value = period
+    }
+
     private val notificationText: MutableLiveData<String> = MutableLiveData(
-        sharedPreferences.getString(NotificationConstants.NOTIFICATION_TEXT.value, "default value")
+        sharedPreferences.getString(NotificationConstants.NOTIFICATION_TEXT.value, "")
     )
 
     fun getNotificationText(): LiveData<String> {
@@ -60,7 +64,6 @@ class NotificationViewModel(sharedPreferences: SharedPreferences) : ViewModel() 
         when (string) {
             NotificationConstants.NIGHT_TIME_START.value -> nightTimeStart.value = int
             NotificationConstants.NIGHT_TIME_END.value -> nightTimeEnd.value = int
-            NotificationConstants.NOTIFICATION_PERIOD.value -> notificationPeriod.value = int
         }
     }
 }

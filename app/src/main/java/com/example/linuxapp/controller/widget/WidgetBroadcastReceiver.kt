@@ -13,7 +13,7 @@ class WidgetBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         Log.e("TAG", "onReceive:WidgetBroadcastReceiver:${intent.action}")
 
-        val pref = context.getSharedPreferences(BroadcastConstants.Storage.value, Context.MODE_PRIVATE)
+        val pref = context.getSharedPreferences(BroadcastConstants.PREFERENCES.value, Context.MODE_PRIVATE)
         val editor = pref.edit()
 
         val time = System.currentTimeMillis()

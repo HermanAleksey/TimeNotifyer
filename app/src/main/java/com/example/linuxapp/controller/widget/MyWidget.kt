@@ -32,7 +32,7 @@ class MyWidget : AppWidgetProvider() {
             //update update time
             val pref =
                 context!!.getSharedPreferences(
-                    BroadcastConstants.Storage.value,
+                    BroadcastConstants.PREFERENCES.value,
                     Context.MODE_PRIVATE
                 )
             val calendar =
@@ -60,7 +60,7 @@ class MyWidget : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.my_widget)
             //prefs
             val pref = context.getSharedPreferences(
-                BroadcastConstants.Storage.value,
+                BroadcastConstants.PREFERENCES.value,
                 Context.MODE_PRIVATE
             )
             val time = pref.getString(
@@ -92,11 +92,11 @@ class MyWidget : AppWidgetProvider() {
             for (i in 0..4) {
                 val intentBroadcast = Intent(context, WidgetBroadcastReceiver::class.java)
                 intentBroadcast.action = when (i) {
-                    0 -> BroadcastConstants.FirstButton.value
-                    1 -> BroadcastConstants.SecondButton.value
-                    2 -> BroadcastConstants.ThirdButton.value
-                    3 -> BroadcastConstants.FourthButton.value
-                    4 -> BroadcastConstants.FifthButton.value
+                    0 -> BroadcastConstants.FIRST_BUTTON.value
+                    1 -> BroadcastConstants.SECOND_BUTTON.value
+                    2 -> BroadcastConstants.THIRD_BUTTON.value
+                    3 -> BroadcastConstants.FOURTH_BUTTON.value
+                    4 -> BroadcastConstants.FIFTH_BUTTON.value
                     else -> BroadcastConstants.ERROR.value
                 }
                 val pendingIntent = PendingIntent.getBroadcast(context, 0, intentBroadcast, 0)

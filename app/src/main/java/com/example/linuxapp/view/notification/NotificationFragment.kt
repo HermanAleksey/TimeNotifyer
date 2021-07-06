@@ -20,6 +20,7 @@ import com.google.android.material.timepicker.TimeFormat
 import com.example.linuxapp.Constant.NotificationConstants
 import com.example.linuxapp.controller.notif.NotificationBroadcastReceiver
 import com.example.linuxapp.controller.notif.YourService
+import it.sephiroth.android.library.numberpicker.doOnProgressChanged
 
 class NotificationFragment : Fragment() {
 
@@ -39,17 +40,14 @@ class NotificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         sharedPreferences = context!!.getSharedPreferences(
-            "Prefs",
+            NotificationConstants.PREFERENCES.value,
             Context.MODE_PRIVATE
         )
         viewModel =
             ViewModelProvider(
                 this,
-                MainViewModelFactory(
-                    sharedPreferences
-                )
-            )
-                .get(NotificationViewModel::class.java)
+                MainViewModelFactory(sharedPreferences)
+            ).get(NotificationViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
@@ -62,22 +60,22 @@ class NotificationFragment : Fragment() {
         })
 
         viewModel.getNightTimeStart().observe(this, {
-            val hours = it/60
-            val minutes = it%60
-            _binding!!.tvInfoStartNightTime.text = "$hours:$minutes"
-            _binding!!.tvSettingStartNightTime.text = "$hours:$minutes"
+            val hours = it / 60
+            val minutes = it % 60
+            _binding!!.tvInfoStartNightTime.text = prettyTime(hours, minutes)
+            _binding!!.tvSettingStartNightTime.text = prettyTime(hours, minutes)
         })
 
         viewModel.getNightTimeEnd().observe(this, {
-            val hours = it/60
-            val minutes = it%60
-            _binding!!.tvSettingEndNightTime.text = "$hours:$minutes"
-            _binding!!.tvInfoEndNightTime.text = "$hours:$minutes"
+            val hours = it / 60
+            val minutes = it % 60
+            _binding!!.tvSettingEndNightTime.text = prettyTime(hours, minutes)
+            _binding!!.tvInfoEndNightTime.text = prettyTime(hours, minutes)
         })
 
         viewModel.getNotificationPeriod().observe(this, {
-            _binding!!.tvNotificationPeriod.text = "$it"
-            _binding!!.tvInfoNotificationPeriod.text = "$it"
+            _binding!!.numberPickerPeriod.progress = it / 60
+            _binding!!.tvInfoNotificationPeriod.text = "${it / 60}"
         })
 
         viewModel.getNotificationText().observe(this, {
@@ -87,7 +85,6 @@ class NotificationFragment : Fragment() {
 
         _binding!!.switchReceiveNotifications.setOnClickListener {
             it as SwitchMaterial
-            Log.e("TAG", "onCreateView: checked:${it.isChecked}")
             sharedPreferences.edit()
                 .putBoolean(
                     NotificationConstants.RECEIVE_NOTIFICATIONS.value,
@@ -95,7 +92,7 @@ class NotificationFragment : Fragment() {
                 ).apply()
 
             //when turning switch ON - setting alarm if turning OFF - canceling him
-            if (it.isChecked){
+            if (it.isChecked) {
                 activity!!.startService(Intent(context, YourService::class.java))
             } else {
                 NotificationBroadcastReceiver().cancelAlarm(context!!)
@@ -121,11 +118,16 @@ class NotificationFragment : Fragment() {
         _binding!!.ibSettingEndNightTime.setOnClickListener {
             showTimePickerDialog(NotificationConstants.NIGHT_TIME_END.value)
         }
-        _binding!!.ibSettingPeriod.setOnClickListener {
-            showTimePickerDialog(NotificationConstants.NOTIFICATION_PERIOD.value)
-        }
         _binding!!.ibSettingStartNightTime.setOnClickListener {
             showTimePickerDialog(NotificationConstants.NIGHT_TIME_START.value)
+        }
+        _binding!!.numberPickerPeriod.doOnProgressChanged { _, progress, _ ->
+            // progress changed
+            sharedPreferences.edit().putInt(
+                NotificationConstants.NOTIFICATION_PERIOD.value,
+                progress
+            ).apply()
+            viewModel.setPeriod(progress)
         }
 
         return _binding!!.root
@@ -134,7 +136,7 @@ class NotificationFragment : Fragment() {
     private fun showTimePickerDialog(string: String) {
         val isSystem24Hour = is24HourFormat(context)
         val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
-
+//TODO(различия для выбора начала и окончания увремени сна)
         val picker =
             MaterialTimePicker.Builder()
                 .setTimeFormat(clockFormat)
@@ -144,21 +146,25 @@ class NotificationFragment : Fragment() {
                 .build()
 
         picker.addOnPositiveButtonClickListener {
-            sharedPreferences.edit().putInt(string, picker.hour*60+picker.minute).apply()
-            viewModel.updateTimeVariables(string,picker.hour*60+picker.minute)
+            sharedPreferences.edit().putInt(string, picker.hour * 60 + picker.minute).apply()
+            viewModel.updateTimeVariables(string, picker.hour * 60 + picker.minute)
+            resetNotificationAlarm()
         }
 
         picker.show(fragmentManager!!, "tag")
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun prettyTime(hours: Int, minutes: Int): String {
+        var str = "$hours:"
+        str += if (minutes < 10) {
+            "0$minutes"
+        } else minutes.toString()
+        return str
+    }
 
-//        val multiSlider = _binding!!.multiSlider
-//        multiSlider.step = 2
-//        multiSlider.min = 1
-//        multiSlider.max = 24
-
+    private fun resetNotificationAlarm() {
+        NotificationBroadcastReceiver().cancelAlarm(context!!)
+        activity!!.startService(Intent(context, YourService::class.java))
     }
 
     override fun onDestroyView() {
